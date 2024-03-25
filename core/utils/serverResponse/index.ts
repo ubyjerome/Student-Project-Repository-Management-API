@@ -22,7 +22,7 @@ class serverResponse {
         message: message || responseArray[1],
       };
       res.status(responseArray[0]).json(responseObject);
-      logger.info(`${req.id}\t${req.method}:\t${req.url}\t${res.statusCode}`);
+      logger.info(`${req.id}\t${req.method}:\t${req.originalUrl}\t${res.statusCode}`);
     }
   
     handleError(
@@ -44,7 +44,7 @@ class serverResponse {
         errorMessage: error?.message,
       };
       res.status(errorArray[0]).json(responseObject);
-      logger.error(`${req.id}\t${req.method}:\t${req.url}\t${res.statusCode}`);
+      logger.error(`${req.id}\t${req.method}:\t${req.originalUrl}\t${res.statusCode}`);
     }
   }
   

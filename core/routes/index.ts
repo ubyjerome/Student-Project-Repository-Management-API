@@ -1,6 +1,5 @@
 import express from "express";
 import { Configs } from "../configs";
-const app = express();
 const router = express.Router();
 const responseType = require("../utils/serverResponse");
 
@@ -19,7 +18,7 @@ router.use((req, res, next) => {
     req,
     res,
     "notFound",
-    `The route \"${req.url}\" is not defined`
+    `a ${req.method} route ${req.originalUrl} is not defined`
   );
 });
 
