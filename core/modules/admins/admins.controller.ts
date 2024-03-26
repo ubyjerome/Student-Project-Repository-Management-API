@@ -3,14 +3,18 @@ import { Request, Response } from "express";
 
 class Admin {
   async createAccount(req: Request, res: Response) {
+    
+    console.log(req.body);
+
     responseType.handleResponse(
       req,
       res,
-      {},
+      req.body,
       "success",
       "Admin Account Creation Route is defined"
     );
   }
+  
   login(req: Request, res: Response) {
     responseType.handleResponse(
       req,

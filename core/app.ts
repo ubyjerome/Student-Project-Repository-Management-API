@@ -7,6 +7,7 @@ const api = require("./api");
 const port = Configs.port
 
 app.use(api);
+app.use(express.json());
 
 app.listen(port, async () => {
   logger.info(`${Configs.project.name}`)
