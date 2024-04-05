@@ -3,6 +3,7 @@ import { Configs } from "./configs";
 import { initializeDatabase } from "./database";
 import cors from "cors";
 import logger from "./utils/logger";
+import { reqTracker } from "./middlewares/reqTracker";
 const app = express();
 const api = require("./api");
 const port = Configs.project.port
@@ -10,6 +11,7 @@ const port = Configs.project.port
 // app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(reqTracker)
 app.use(api);
 
 app.listen(port, async () => {

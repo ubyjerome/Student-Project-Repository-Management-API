@@ -11,8 +11,8 @@ class serverResponse {
       responseStatus: string,
       message: string
     ) {
-      let requestId = `req_${randomUUID()}`
-      req.id = requestId
+      // let requestId = `req_${randomUUID()}`
+      // req.id = requestId
       let responseArray = response(responseStatus);
       const responseObject = {
         isSuccess:responseArray[2],
@@ -32,8 +32,8 @@ class serverResponse {
       message: string,
       error?: Error,
     ) {      
-      let requestId = `req_${randomUUID()}`
-      req.id = requestId
+      // let requestId = `req_${randomUUID()}`
+      // req.id = requestId
       const errorArray = response(errorType);
       const responseObject = {
         isSuccess:errorArray[2],
