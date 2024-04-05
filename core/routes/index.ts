@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
     res,
     {},
     "success",
-    `Server is running on port ${Configs.port} 🚀🚀🚀`
+    `Server is running on port ${Configs.project.port} 🚀🚀🚀`
   );
 });
 
