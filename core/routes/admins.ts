@@ -1,16 +1,20 @@
-import express, { request, response } from "express";
-import adminsController from "../modules/admins/admins.controller";
+import express from "express"
+import adminController from "../modules/admins/admins.controller";
+let admin = new adminController()
 const router = express.Router();
-import { newAdminSchema } from "../modules/admins/schema";
+import { newAdminDTO } from "../modules/admins/dto";
 import { validate } from "../middlewares/validation";
 
 router.post("/new",
-    validate(newAdminSchema),
-    adminsController.createAccount);
+    validate(newAdminDTO),
+    admin.createAccount.bind(admin));
 
-router.post("/login", adminsController.login)
-router.post("/forgot-password", adminsController.forgotPassword)
-router.put('/reset/:token', adminsController.resetPassword)
-router.get('/verify-email/:token', adminsController.verifyEmail)
+router.post("/login",
+    validate(newAdminDTO),
+    admin.login)
+    
+router.post("/forgot-password", admin.forgotPassword)
+router.put('/reset/:token', admin.resetPassword)
+router.get('/verify-email/:token', admin.verifyEmail)
 
 export = router;

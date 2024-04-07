@@ -26,7 +26,7 @@ class serverResponse {
     req: CustomRequest,
     res: CustomResponse,
     errorType: string,
-    message: string,
+    message?: string,
     error?: Error,
   ) {
     const errorArray = response(errorType);
@@ -43,4 +43,4 @@ class serverResponse {
   }
 }
 
-module.exports = new serverResponse();
+export default new serverResponse();

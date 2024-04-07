@@ -1,5 +1,4 @@
 require("dotenv").config();
-
 const configuration = {
   project: {
     name: process.env.PROJECT_NAME,
@@ -10,6 +9,10 @@ const configuration = {
     user: process.env.MAIL_USER,
     pass: process.env.MAIL_PASS,
     port: process.env.MAIL_PORT,
+  },
+  sec: {
+    // bcryptRounds: parseInt(process.env.BCRYPT_ROUNDS)
+    bcryptRounds: 10
   },
   firebase: {
     apiKey: process.env.FB_API_KEY,
