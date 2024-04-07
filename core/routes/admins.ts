@@ -7,14 +7,7 @@ import { validate } from "../middlewares/validation";
 
 router.post("/new",
     validate(newAdminDTO),
-    admin.createAccount.bind(admin));
-
-router.post("/login",
-    validate(newAdminDTO),
-    admin.login)
-    
-router.post("/forgot-password", admin.forgotPassword)
-router.put('/reset/:token', admin.resetPassword)
-router.get('/verify-email/:token', admin.verifyEmail)
+    admin.createAccount.bind(admin)
+);
 
 export = router;

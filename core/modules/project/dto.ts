@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
-const schema = Joi.object({
+export const newProjectDTO = Joi.object({
   title: Joi.string().max(64).required(),
   description: Joi.string().min(3).max(300).required(),
   author: Joi.string().min(3).max(32).required(),
@@ -20,5 +20,3 @@ const schema = Joi.object({
   }).required(),
   createdBy: Joi.string().required()
 });
-
-export default schema;

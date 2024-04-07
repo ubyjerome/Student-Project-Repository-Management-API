@@ -1,4 +1,4 @@
-const responseType = require("../utils/serverResponse");
+import serverResponse from "../utils/serverResponse";
 
 import { NextFunction, Request, Response, RequestHandler } from "express";
 import Joi from "joi";
@@ -8,7 +8,7 @@ export default class ValidationMiddleware {
     return (req: Request, res: Response, next: NextFunction) => {
       const { error } = schema.validate(req.body);
       if (error) {
-        responseType.handleError(req, res, "badRequest", error.details[0].message)
+        serverResponse.handleError(req, res, "badRequest", error.details[0].message)
       } else {
         next();
       }

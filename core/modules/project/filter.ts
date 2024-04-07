@@ -1,4 +1,4 @@
-import Project from './projects.model';
+import Project from './project.model';
 
 // Search projects by keywords
 async function searchByKeywords(keywords: string[]): Promise<any> {
