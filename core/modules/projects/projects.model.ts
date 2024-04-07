@@ -2,6 +2,7 @@ import { Schema, model } from 'mongoose';
 
 
 const projectSchema = new Schema({
+_id: { type: String, required: true },
   title: { type: String, maxlength: 64, required: true },
   description: { type: String, maxlength: 300, required: true },
   author: { type: String, maxlength: 32, required: true },
@@ -20,6 +21,6 @@ const projectSchema = new Schema({
     Admins: { type: Schema.Types.ObjectId, ref: 'Admins', required: true }
   },
   createdBy: { type: Schema.Types.ObjectId, ref: 'Admins', required: true }
-});
+},{timestamps:true});
 
 export default model('Project', projectSchema);
