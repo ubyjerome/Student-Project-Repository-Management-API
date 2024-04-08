@@ -1,7 +1,6 @@
 import { NextFunction, Request, Response, RequestHandler } from "express";
 import Project from "../modules/project/project.repo"
 import serverResponse from "../utils/serverResponse"
-import { request } from "https"
 
 export async function validateProject(req: Request, res: Response, next: NextFunction) {
     const projectRepo = new Project()

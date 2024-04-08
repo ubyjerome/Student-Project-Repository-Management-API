@@ -8,9 +8,19 @@ class ProjectService {
         const response = await this.repo.createProject(projectInfo)
         return response
     }
+    
     getAll() { }
     getById() { }
-    updateOne() { }
+
+    async updateOne(projectId: string, updateInfo: any) {
+        const project = await this.repo.getProjectById(projectId)
+        if (!project.updateInfo[0]) {
+            return false
+        }
+        this.repo.updateProject(projectId, updateInfo)
+        return true
+    }
+
     async deleteOne(projectId: string) {
         await this.repo.updateProject(projectId, { isDeleted: true })
     }

@@ -47,6 +47,36 @@ class Project {
             throw error
         }
     }
+
+    async updateProject(req:Request, res:Response){
+        let projectInfo = req.body
+        try {
+            let response = await this.service.updateOne(projectInfo.projectId, projectInfo.update)
+            if(response == false){
+                serverResponse.handleError(
+                    req,
+                    res,
+                    "badRequest",
+                    "One of two update fields are invalid"
+                );
+            }
+            serverResponse.handleResponse(
+                req,
+                res,
+                {},
+                "success",
+                "Project Updated Sucessfully"
+            );
+        } catch (error) {
+            serverResponse.handleError(
+                req,
+                res,
+                "internalServerError"
+            );
+            console.log(error);
+            throw error
+        }
+    }
 }
 
 export default Project;
