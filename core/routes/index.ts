@@ -1,10 +1,10 @@
 import express from "express";
 import { Configs } from "../configs";
+import serverResponse from "../utils/serverResponse";
 const router = express.Router();
-const responseType = require("../utils/serverResponse");
 
 router.get("/", (req, res) => {
-  responseType.handleResponse(
+  serverResponse.handleResponse(
     req,
     res,
     {},
@@ -14,7 +14,7 @@ router.get("/", (req, res) => {
 });
 
 router.use((req, res, next) => {
-  responseType.handleError(
+  serverResponse.handleError(
     req,
     res,
     "notFound",

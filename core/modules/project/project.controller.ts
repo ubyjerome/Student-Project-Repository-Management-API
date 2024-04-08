@@ -2,16 +2,16 @@ import serverResponse from "../../utils/serverResponse";
 import { Request, Response } from "express";
 import ProjectService from "./project.service";
 
-class Admin {
+class Project {
     public service = new ProjectService()
     async createProject(req: Request, res: Response) {
         try {
             serverResponse.handleResponse(
                 req,
                 res,
-                {},
+                req.body,
                 "success",
-                "Admin Created Sucessfully"
+                "Project Created Sucessfully"
             );
         } catch (error) {
             console.log(error);
@@ -21,8 +21,7 @@ class Admin {
                 "internalServerError"
             );
         }
-
     }
 }
 
-export default Admin;
+export default Project;

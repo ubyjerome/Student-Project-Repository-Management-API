@@ -14,9 +14,5 @@ export const newProjectDTO = Joi.object({
   supervisors: Joi.array().items(Joi.string().max(64)).required(),
   keywords: Joi.array().items(Joi.string().max(64)).required(),
   departmentAcronym: Joi.string().required(),
-  ref: Joi.object({
-    Departments: Joi.string().required(),
-    Admins: Joi.string().required()
-  }).required(),
   createdBy: Joi.string().required()
 });
