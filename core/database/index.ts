@@ -4,7 +4,7 @@ import logger from "../utils/logger";
 
 export async function initializeDatabase() {
   try {
-    await mongoose.connect(Configs.mongoUrl);
+     await mongoose.connect(Configs.mongoUrl);
     logger.info("Database connected");
   } catch (error) {
     logger.error(`Database connection failed. Error: ${error}`);

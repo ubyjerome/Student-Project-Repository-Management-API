@@ -4,7 +4,7 @@ const configuration = {
     name: process.env.PROJECT_NAME,
     port: process.env.PORT,
   },
-  mongoUrl: `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASS}@${process.env.MONGODB_URL}/?retryWrites=true&w=majority`,
+  mongoUrl: `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASS}@${process.env.MONGODB_URL}`,
   mail: {
     user: process.env.MAIL_USER,
     pass: process.env.MAIL_PASS,
@@ -24,5 +24,4 @@ const configuration = {
     measurementId: process.env.FB_MEASUREMENT_ID,
   },
 };
-
 export const Configs = configuration;
