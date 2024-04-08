@@ -11,13 +11,13 @@ class ProjectRepo {
 
   // Get all projects
   async getAllProjects(): Promise<any> {
-      const projects = await Project.find().populate('ref.Departments ref.Admins createdBy');
+      const projects = await Project.find();
       return projects
   }
 
   // Get project by ID
   async getProjectById(id: string): Promise<any> {
-      const project = await Project.findById(id).populate('ref.Departments ref.Admins createdBy');
+      const project = await Project.findById(id);
       return project;
   }
 

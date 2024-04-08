@@ -4,6 +4,7 @@ let Project = new projectController()
 const router = express.Router();
 import { newProjectDTO } from "../modules/project/dto";
 import { validate } from "../middlewares/validation";
+import { validateProject } from "../middlewares/projectValidation";
 
 //CRUD Operations: Done only by admin
 router.post("/new",
@@ -11,6 +12,10 @@ router.post("/new",
     Project.createProject.bind(Project)
 )
 
+router.delete("/delete/:projectId",
+    validateProject,
+    Project.deleteProject.bind(Project)
+)
 //Search Operations: Done by user
 
 export = router

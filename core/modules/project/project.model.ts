@@ -16,7 +16,8 @@ const projectSchema = new Schema({
   supervisors: [{ type: String, maxlength: 64 }],
   keywords: [{ type: String, maxlength: 64 }],
   departmentAcronym: { type: String, required: true },
-  createdBy: { type: String, ref: 'Admins', required: true }
+  createdBy: { type: String, ref: 'Admins', required: true },
+  isDeleted:{type:Boolean, default:false}
 }, { timestamps: true });
 
 export default model('Project', projectSchema);

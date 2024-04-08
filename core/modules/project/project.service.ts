@@ -11,6 +11,8 @@ class ProjectService {
     getAll() { }
     getById() { }
     updateOne() { }
-    deleteOne() { }
+    async deleteOne(projectId: string) {
+        await this.repo.updateProject(projectId, { isDeleted: true })
+    }
 }
 export default ProjectService
