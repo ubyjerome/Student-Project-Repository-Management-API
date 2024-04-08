@@ -9,11 +9,11 @@ class ProjectService {
         return response
     }
 
-    async getAll() { 
+    async getAll() {
         const projectsFound = await this.repo.getAllProjects()
         return projectsFound
     }
-    async getById(projectId:string) { 
+    async getById(projectId: string) {
         const project = await this.repo.getProjectById(projectId)
         return project
     }
@@ -23,7 +23,7 @@ class ProjectService {
     }
 
     async deleteOne(projectId: string) {
-        await this.repo.updateProject(projectId, { isDeleted: true })
+        await this.repo.updateProject(projectId, { deleted: true, deletedAt: new Date() })
     }
 }
 export default ProjectService
