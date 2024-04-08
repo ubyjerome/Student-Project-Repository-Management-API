@@ -25,7 +25,7 @@ class Project {
         }
     }
 
-    async deleteProject(req:Request, res: Response){
+    async deleteProject(req: Request, res: Response) {
         let projectId = req.params.projectId
         try {
             await this.service.deleteOne(projectId)
@@ -47,7 +47,7 @@ class Project {
         }
     }
 
-    async updateProject(req:Request, res:Response){
+    async updateProject(req: Request, res: Response) {
         let update = req.body
         try {
             await this.service.updateOne(req.params.projectId, update)
@@ -92,6 +92,51 @@ class Project {
 
     async getOneProject(req: Request, res: Response) {
         const projectFound = await this.service.getById(req.params.projectId)
+        if (!projectFound) {
+            serverResponse.handleResponse(
+                req,
+                res,
+                projectFound,
+                "notFound",
+                "Project Not Found"
+            );
+            return
+        }
+
+        try {
+            serverResponse.handleResponse(
+                req,
+                res,
+                projectFound,
+                "success",
+                "Project Found Sucessfully"
+            );
+        } catch (error) {
+            serverResponse.handleError(
+                req,
+                res,
+                "internalServerError"
+            );
+            console.log(error);
+            throw error
+        }
+    }
+
+    async getOneByTitle(req: Request, res: Response) {
+        const projectTitle = req.params.title
+        const projectFound = await this.service.getOneByTitle(projectTitle)
+
+        if (!projectFound) {
+            serverResponse.handleResponse(
+                req,
+                res,
+                projectFound,
+                "notFound",
+                "Project Not Found"
+            );
+            return
+        }
+
         try {
             serverResponse.handleResponse(
                 req,

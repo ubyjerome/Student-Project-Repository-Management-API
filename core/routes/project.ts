@@ -31,6 +31,9 @@ router.get("/:projectId",
     Project.getOneProject.bind(Project)
 )
 
+router.get("/title/:title",
+    Project.getOneByTitle.bind(Project)
+)
 //Search Operations: Done by user
 
 export = router

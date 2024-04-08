@@ -25,5 +25,10 @@ class ProjectService {
     async deleteOne(projectId: string) {
         await this.repo.updateProject(projectId, { deleted: true, deletedAt: new Date() })
     }
+
+    async getOneByTitle(title:string){
+        const projectReturned = await this.repo.getProjectByTitle(title)
+        return projectReturned
+    }
 }
 export default ProjectService
