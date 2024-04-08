@@ -2,13 +2,13 @@ import { Schema, model } from 'mongoose';
 
 
 const projectSchema = new Schema({
-  _id: { type: String, required: true },
-  title: { type: String, maxlength: 64, required: true },
+  _id: { type: String, required: true},
+  title: { type: String, maxlength: 64, required: true, unique:true },
   description: { type: String, maxlength: 300, required: true },
   author: { type: String, maxlength: 32, required: true },
   url: { type: String, maxlength: 32, required: true },
   abstract: { type: String, maxlength: 1512, required: true },
-  dateSubmitted: {
+  publicationDate: {
     month: { type: String, required: true, enum: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] },
     year: { type: Number, required: true }
   },

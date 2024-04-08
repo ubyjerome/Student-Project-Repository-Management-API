@@ -1,4 +1,4 @@
-import Joi from 'joi';
+import Joi, { allow } from 'joi';
 
 export const newProjectDTO = Joi.object({
   title: Joi.string().max(64).required(),
@@ -6,7 +6,7 @@ export const newProjectDTO = Joi.object({
   author: Joi.string().min(3).max(32).required(),
   url: Joi.string().max(32).required(),
   abstract: Joi.string().min(32).max(1512).required(),
-  dateSubmitted: Joi.object({
+  publicationDate: Joi.object({
     month: Joi.string().valid('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December').required(),
     year: Joi.number().required()
   }).required(),
@@ -15,4 +15,21 @@ export const newProjectDTO = Joi.object({
   keywords: Joi.array().items(Joi.string().max(64)).required(),
   departmentAcronym: Joi.string().required(),
   createdBy: Joi.string().required()
-});
+}).options({allowUnknown:false});
+
+export const updateProjectDTO = Joi.object({
+  title: Joi.string().max(64).optional(),
+  description: Joi.string().min(3).max(300).optional(),
+  author: Joi.string().min(3).max(32).optional(),
+  url: Joi.string().max(32).optional(),
+  abstract: Joi.string().min(32).max(1512).optional(),
+  publicationDate: Joi.object({
+    month: Joi.string().valid('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December').optional(),
+    year: Joi.number().optional()
+  }).optional(),
+  academicYear: Joi.number().optional(),
+  supervisors: Joi.array().items(Joi.string().max(64)).optional(),
+  keywords: Joi.array().items(Joi.string().max(64)).optional(),
+  departmentAcronym: Joi.string().optional(),
+  createdBy: Joi.string().optional()
+}).options({allowUnknown:false})

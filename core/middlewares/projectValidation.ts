@@ -7,12 +7,19 @@ export async function validateProject(req: Request, res: Response, next: NextFun
         let projectId = req.params.projectId
 
         try {
-            let projectFound = await projectRepo.getProjectById(projectId)            
-            if (projectFound == null || projectFound == undefined || !projectFound[0]) {
-                serverResponse.handleError(req, res, "badRequest", "Project does not exist")
-            } else {
-                next();
+            let projectFound = await projectRepo.getProjectById(projectId)
+
+            if (projectFound == null || projectFound == undefined || !projectFound) {
+                serverResponse.handleError(req, res, "notFound", "Project does not exist")
+                return
+            } 
+
+            if(projectFound.isDeleted == true){
+                serverResponse.handleError(req, res, "methodNotAllowed", "Project has been deleted")
+                return
             }
+            
+            next()
         } catch (error) {
             serverResponse.handleError(req, res, "internalServerError")
             console.log(error);
