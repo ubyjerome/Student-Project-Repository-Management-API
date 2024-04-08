@@ -92,17 +92,6 @@ class Project {
 
     async getOneProject(req: Request, res: Response) {
         const projectFound = await this.service.getById(req.params.projectId)
-        if (!projectFound) {
-            serverResponse.handleResponse(
-                req,
-                res,
-                projectFound,
-                "notFound",
-                "Project Not Found"
-            );
-            return
-        }
-
         try {
             serverResponse.handleResponse(
                 req,
@@ -126,7 +115,7 @@ class Project {
         const projectTitle = req.params.title
         const projectFound = await this.service.getOneByTitle(projectTitle)
 
-        if (!projectFound) {
+        if (!projectFound[0]) {
             serverResponse.handleResponse(
                 req,
                 res,
