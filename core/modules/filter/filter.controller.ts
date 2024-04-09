@@ -145,6 +145,23 @@ class Project {
             throw error
         }
     }
+
+    async searchDecider(req:Request, res:Response){
+        const {searchKey, searchBy} = req.body
+        try {
+            const projects = await this.service.dynamicSearch(searchKey, searchBy)
+            this.decideReponse(req, res, projects)
+            console.log(req.body);
+        } catch (error) {
+            serverResponse.handleError(
+                req,
+                res,
+                "internalServerError"
+            );
+            console.log(error);
+            throw error
+        }
+    }
 }
 
 export default Project;

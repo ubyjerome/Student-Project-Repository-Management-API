@@ -83,6 +83,40 @@ class filter {
       throw new Error('Could not search projects by createdBy');
     }
   }
+
+
+
+
+
+  async dynamicSearch(searchKey: any, searchBy: any) {
+
+    if (searchBy == "title") {
+      return this.searchByTitle(searchKey)
+    }
+
+    if (searchBy == "keywords") {
+      if(!searchKey[0]){
+        return undefined
+      }
+      return this.searchByKeywords(searchKey)
+    }
+
+    if (searchBy == "month") {
+      return this.searchByMonth(searchKey)
+    }
+    if (searchBy == "year") {
+      return this.searchByYear(searchKey)
+    }
+    if (searchBy == "author") {
+      return this.searchByAuthor(searchKey)
+    }
+    if (searchBy == "supervisor") {
+      return this.searchBySupervisor(searchKey)
+    }
+    if (searchBy == "createdBy") {
+      return this.searchByCreatedBy(searchKey)
+    }
+  }
 }
 
 export = filter
