@@ -6,7 +6,7 @@ const coreRouter = require("../routes/index")
 const adminRouter = require("../routes/admins")
 const projectRouter = require("../routes/project")
 const filterRouter = require("../routes/filter")
-const filterRouterV2 = require("../routes/searchFilters.v2")
+const filterRouterV2 = require("../routes/filter.v2")
 
 //routes middleware
 app.use(`${apiVersion}/admin`, adminRouter)
