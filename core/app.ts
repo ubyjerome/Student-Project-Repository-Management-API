@@ -18,6 +18,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(reqTracker)
 app.use(api);
+app.use((req, res, next) => {
+  serverResponse.handleError(
+    req,
+    res,
+    "notFound",
+    `a ${req.method} route ${req.originalUrl} is not defined`
+  );
+});
 app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
   serverResponse.handleError(req, res, "internalServerError", error.message)
   console.log(error);

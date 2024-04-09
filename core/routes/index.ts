@@ -13,13 +13,4 @@ router.get("/", (req, res) => {
   );
 });
 
-router.use((req, res, next) => {
-  serverResponse.handleError(
-    req,
-    res,
-    "notFound",
-    `a ${req.method} route ${req.originalUrl} is not defined`
-  );
-});
-
 export = router;
