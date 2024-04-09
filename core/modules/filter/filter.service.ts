@@ -1,17 +1,15 @@
 import filterRepo from "./filter.repo"
-
+import { validateSearchKey } from "./dto"
 //Simple Filter
 
 class filter {
-private repo = new filterRepo()
-
+  private repo = new filterRepo()
   async dynamicSearch(searchKey: any, searchBy: any) {
-
     if (searchBy == "title") {
       return this.repo.searchByTitle(searchKey)
     }
     if (searchBy == "keywords") {
-      if(!searchKey[0]){
+      if (!searchKey[0]) {
         return false
       }
       return this.repo.searchByKeywords(searchKey)

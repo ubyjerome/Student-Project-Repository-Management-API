@@ -5,7 +5,6 @@ import FilterService from "./filter.service";
 class Project {
     public service = new FilterService()
     decideReponse(req: Request, res: Response, data: any) {
-        console.log(`${data} - Controller`);        
         if (undefined || !data[0]) {
             serverResponse.handleResponse(
                 req,
@@ -26,8 +25,6 @@ class Project {
     }
     
     async searchDecider(req:Request, res:Response){
-        console.log(req.body);
-        
         const {searchKey, searchBy} = req.body
         try {
             const projects = await this.service.dynamicSearch(searchKey, searchBy)
