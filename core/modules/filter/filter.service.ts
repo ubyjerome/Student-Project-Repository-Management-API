@@ -84,10 +84,6 @@ class filter {
     }
   }
 
-
-
-
-
   async dynamicSearch(searchKey: any, searchBy: any) {
 
     if (searchBy == "title") {

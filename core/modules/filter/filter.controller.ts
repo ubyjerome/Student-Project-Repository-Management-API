@@ -151,7 +151,6 @@ class Project {
         try {
             const projects = await this.service.dynamicSearch(searchKey, searchBy)
             this.decideReponse(req, res, projects)
-            console.log(req.body);
         } catch (error) {
             serverResponse.handleError(
                 req,
