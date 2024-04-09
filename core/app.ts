@@ -39,3 +39,5 @@ app.listen(port, async () => {
   await initializeDatabase();
   logger.info(`Server now listening on port ${port}`)
 });
+
+export default app
