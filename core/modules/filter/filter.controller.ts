@@ -5,7 +5,16 @@ import FilterService from "./filter.service";
 class Project {
     public service = new FilterService()
     decideReponse(req: Request, res: Response, data: any) {
-        if (data == undefined || !data[0]) {
+        if (data == undefined) {
+            serverResponse.handleError(
+                req,
+                res,
+                "forbidden",
+                "Search key is invalid"
+            );
+            return
+        }
+        if (!data[0]) {
             serverResponse.handleError(
                 req,
                 res,
