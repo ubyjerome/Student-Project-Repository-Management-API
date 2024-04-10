@@ -16,12 +16,11 @@ export const arraySearchDTO = Joi.object({
 export const validateSearchKey = function(dataType:string, data:any){
     if(dataType == "string"){
         if(typeof(data) != "string"){
-            console.log("Data is not valid");
-            return false
+            throw new Error('\"dataKey\" must be a string')
         }
+        return
     }
     if(typeof(data) != "object"){
-        console.log("Data is not valid")
-        return false
+        throw new Error('\"dataKey\" must be an array')
     }
 }

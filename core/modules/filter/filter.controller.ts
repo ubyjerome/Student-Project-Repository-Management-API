@@ -37,13 +37,13 @@ class Project {
         try {
             const projects = await this.service.dynamicSearch(searchKey, searchBy)
             this.decideReponse(req, res, projects)
-        } catch (error) {
+        } catch (error:any) {
             serverResponse.handleError(
                 req,
                 res,
-                "internalServerError"
+                "internalServerError",
+                error.message
             );
-            console.log(error);
             throw error
         }
     }

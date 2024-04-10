@@ -10,7 +10,8 @@ class filter {
       const projects = await Project.find({ keywords: { $in: keywords } })
       return projects;
     } catch (error) {
-      throw new Error('Could not search projects by keywords');
+        console.log(`Could not search projects by keywords`);
+        return undefined
     }
   }
 
