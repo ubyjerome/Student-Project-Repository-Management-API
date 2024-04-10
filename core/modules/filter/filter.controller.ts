@@ -5,13 +5,12 @@ import FilterService from "./filter.service";
 class Project {
     public service = new FilterService()
     decideReponse(req: Request, res: Response, data: any) {
-        if (undefined || !data[0]) {
-            serverResponse.handleResponse(
+        if (data == undefined || !data[0]) {
+            serverResponse.handleError(
                 req,
                 res,
-                {},
                 "notFound",
-                "No project matches the seach parameter"
+                "No project matches the seach parameters"
             );
             return
         }

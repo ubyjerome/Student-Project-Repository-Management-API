@@ -6,6 +6,7 @@ export const newProjectDTO = Joi.object({
   author: Joi.string().min(3).max(32).required(),
   url: Joi.string().max(32).required(),
   abstract: Joi.string().min(32).max(2048).required(),
+  framework:Joi.string().required(),
   publicationDate: Joi.object({
     month: Joi.string().valid('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December').required(),
     year: Joi.number().required()
@@ -23,6 +24,7 @@ export const updateProjectDTO = Joi.object({
   author: Joi.string().min(3).max(32).optional(),
   url: Joi.string().max(32).optional(),
   abstract: Joi.string().min(32).max(1512).optional(),
+  framework:Joi.string().optional(),
   publicationDate: Joi.object({
     month: Joi.string().valid('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December').optional(),
     year: Joi.number().optional()

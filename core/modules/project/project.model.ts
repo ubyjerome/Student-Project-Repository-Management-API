@@ -8,6 +8,7 @@ const projectSchema = new Schema({
   author: { type: String, maxlength: 32, required: true },
   url: { type: String, maxlength: 32, required: true },
   abstract: { type: String, maxlength: 2048, required: true },
+  framework:{type: String, default:""},
   publicationDate: {
     month: { type: String, required: true, enum: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] },
     year: { type: Number, required: true }
