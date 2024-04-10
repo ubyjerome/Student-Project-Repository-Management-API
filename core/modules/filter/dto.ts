@@ -13,14 +13,14 @@ export const arraySearchDTO = Joi.object({
     searchKey: Joi.array().required()
 })
 
-export const validateSearchKey = function(dataType:string, data:any){
+export const validateSearchKey = function(dataType:string, data:any, method:string){
     if(dataType == "string"){
         if(typeof(data) != "string"){
-            throw new Error('\"dataKey\" must be a string')
+            throw new Error(`\"dataKey\" must be a string for ${method}`)
         }
         return
     }
     if(typeof(data) != "object"){
-        throw new Error('\"dataKey\" must be an array')
+        throw new Error(`\"dataKey\" must be a string for ${method}`)
     }
 }
