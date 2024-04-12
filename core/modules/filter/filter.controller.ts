@@ -19,7 +19,7 @@ class Project {
                 req,
                 res,
                 "notFound",
-                "No project matches the seach parameters"
+                "No project matches the search parameters"
             );
             return
         }
