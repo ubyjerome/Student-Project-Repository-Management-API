@@ -4,9 +4,9 @@ export const newProjectDTO = Joi.object({
   title: Joi.string().max(512).required(),
   description: Joi.string().min(3).max(300).required(),
   author: Joi.string().min(3).max(32).required(),
-  url: Joi.string().max(32).required(),
+  url: Joi.string().max(2048).required(),
   abstract: Joi.string().min(32).max(2048).required(),
-  framework:Joi.string().required(),
+  framework:Joi.string(),
   publicationDate: Joi.object({
     month: Joi.string().valid('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December').required(),
     year: Joi.number().required()
