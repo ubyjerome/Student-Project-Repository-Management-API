@@ -1,7 +1,7 @@
 import Joi from 'joi';
 
 export const searchFilterDTO = Joi.object({
-    searchBy: Joi.string().valid('title', 'keywords', 'author', 'month', 'year', 'academicYear', 'supervisors', 'department', 'createdBy').required(),
+    searchBy: Joi.string().valid('title', 'keywords', 'author', 'month', 'year', 'academicYear', 'supervisors', 'department', 'createdBy','others').required(),
     searchKey: Joi.any()
 }).options({ allowUnknown: false })
 

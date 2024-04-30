@@ -10,8 +10,8 @@ class filter {
       const projects = await Project.find({ keywords: { $in: keywords } })
       return projects;
     } catch (error) {
-        console.log(`Could not search projects by keywords`);
-        return undefined
+      console.log(`Could not search projects by keywords`);
+      return undefined
     }
   }
 
@@ -60,7 +60,7 @@ class filter {
     try {
       const projects = await Project.find({ supervisors: { $regex: supervisor, $options: 'i' } })
       console.log(`${projects} - Service`);
-      
+
       return projects;
     } catch (error) {
       throw new Error('Could not search projects by supervisor');
@@ -81,6 +81,22 @@ class filter {
   async searchByCreatedBy(createdBy: string) {
     try {
       const projects = await Project.find({ createdBy: createdBy })
+      return projects;
+    } catch (error) {
+      throw new Error('Could not search projects by createdBy');
+    }
+  }
+
+  async searchByOthers(othersString: string) {
+    try {
+      const projects = await Project.find({
+        $or: [
+          { title: { $regex: new RegExp(othersString, 'i') } },
+          { supervisors: { $regex: new RegExp(othersString, 'i') } },
+          { author: { $regex: new RegExp(othersString, 'i') } },
+          { keywords: { $in: [othersString] } }
+        ]
+      });
       return projects;
     } catch (error) {
       throw new Error('Could not search projects by createdBy');

@@ -33,6 +33,10 @@ class filter {
       validateSearchKey("string", searchKey, searchBy)
       return this.repo.searchByCreatedBy(searchKey)
     }
+    if(searchBy == "others"){
+      validateSearchKey("string", searchKey, searchBy)
+      return this.repo.searchByOthers(searchKey)
+    }
   }
 }
 
