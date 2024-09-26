@@ -6,11 +6,20 @@ class Admin {
   public service = new AdminService()
   async createAccount(req: Request, res: Response) {
     try {
-      await this.service.createNewAdmin(req.body)
+      const admin = await this.service.createNewAdmin(req.body)
+      if (admin == null) {
+        serverResponse.handleError(
+          req,
+          res,
+          "internalServerError",
+          "An Error Occured!"
+        );
+        return
+      }
       serverResponse.handleResponse(
         req,
         res,
-        {},
+        admin,
         "success",
         "Admin Created Sucessfully"
       );
@@ -19,7 +28,8 @@ class Admin {
       serverResponse.handleError(
         req,
         res,
-        "internalServerError"
+        "internalServerError", 
+        "An Error Occured!"
       );
     }
   }

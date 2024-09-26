@@ -2,10 +2,11 @@ import Joi from 'joi';
 
 //DTOs
 export const newAdminDTO = Joi.object({
-  firstName: Joi.string().required(),
-  lastName: Joi.string().required(),
-  emailAddress: Joi.string().required(),
-  password: Joi.string().required(),
+  firstName: Joi.string().required().min(3).max(32),
+  lastName: Joi.string().required().min(3).max(32),
+  emailAddress: Joi.string().required().min(7).max(32),
+  phoneNumber:Joi.string().required().min(11).max(11),
+  password: Joi.string().required().min(8).required(),
   confirmPassword: Joi.string().min(8).required()
 });
 

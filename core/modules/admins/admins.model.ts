@@ -3,10 +3,11 @@ import { IAdmin } from "./type";
 
 const AdminSchema = new Schema(
   {
+    _id:{type:String, required:true},
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
-    email: { type: String, required: true, unique: true },
-    phone: { type: String, required: true, unique: true },
+    emailAddress: { type: String, required: true, unique: true },
+    phoneNumber: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     deleted: { type: Boolean, default: false },
     deletedAt: { type: Date },

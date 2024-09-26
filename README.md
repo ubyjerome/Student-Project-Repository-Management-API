@@ -7,7 +7,7 @@
 </div>
 
 <p align="center">
-            This NACOS AKSU is operated under license from NACOS NIGERIA.
+            NACOS AKSU is Operated Under License from NACOS NIGERIA
 </p>
 
 > Student Project Repository Management Project API Codebase
