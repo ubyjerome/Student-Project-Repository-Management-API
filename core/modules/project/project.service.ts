@@ -3,8 +3,9 @@ import ProjectRepo from "./project.repo"
 
 class ProjectService {
     private repo = new ProjectRepo()
-    async createNew(projectInfo: any) {
+    async createNew(projectInfo: any, adminId: string) {
         projectInfo._id = randomUUID()
+        projectInfo.createdBy = adminId
         const response = await this.repo.createProject(projectInfo)
         return response
     }
@@ -26,7 +27,7 @@ class ProjectService {
         await this.repo.updateProject(projectId, { deleted: true, deletedAt: new Date() })
     }
 
-    async getOneByTitle(title:string){
+    async getOneByTitle(title: string) {
         const projectReturned = await this.repo.getProjectByTitle(title)
         return projectReturned
     }

@@ -1,12 +1,20 @@
 import serverResponse from "../../utils/serverResponse";
 import { Request, Response } from "express";
 import ProjectService from "./project.service";
+import { bearerExtractor } from "../../utils/bearerExtractor";
 class Project {
     public service = new ProjectService()
 
     async createProject(req: Request, res: Response) {
-        const response = await this.service.createNew(req.body)
+
         try {
+            const bearerData = await bearerExtractor(req)
+            if (bearerData.success == false) {
+                serverResponse.handleError(req, res, "unauthorized", "Invalid Authorization Token")
+                return
+            }
+            const adminId = bearerData.decoded._id
+            const response = await this.service.createNew(req.body, adminId)
             serverResponse.handleResponse(
                 req,
                 res,

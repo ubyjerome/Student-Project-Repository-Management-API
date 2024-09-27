@@ -4,6 +4,7 @@ import filterController from "../modules/filter/filter.controller"
 import { newProjectDTO, updateProjectDTO } from "../modules/project/dto";
 import { validate } from "../middlewares/validation";
 import { validateProject } from "../middlewares/projectValidation";
+import { isAdmin } from "../middlewares/adminValidation";
 
 let Project = new projectController()
 const router = express.Router();
@@ -11,17 +12,20 @@ const router = express.Router();
 //CRUD Operations: Done only by admin
 router.post("/new",
     validate(newProjectDTO),
+    isAdmin,
     Project.createProject.bind(Project)
 )
 
 router.delete("/delete/:projectId",
     validateProject,
+    isAdmin,
     Project.deleteProject.bind(Project)
 )
 
 router.put("/update/:projectId",
     validateProject,
     validate(updateProjectDTO),
+    isAdmin,
     Project.updateProject.bind(Project)
 )
 
