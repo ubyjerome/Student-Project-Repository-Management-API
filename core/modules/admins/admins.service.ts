@@ -29,7 +29,8 @@ class AdminService {
                 lastName: Configs.superAdmin.lastName,
                 emailAddress: Configs.superAdmin.email,
                 phoneNumber: Configs.superAdmin.phoneNumber,
-                password: Configs.superAdmin.password
+                password: Configs.superAdmin.password,
+                elevated:true
             }
             const currentDefaultSuperAdmin = await this.fetchAdminById(suAdminInfo._id)
             if (currentDefaultSuperAdmin == null) {
