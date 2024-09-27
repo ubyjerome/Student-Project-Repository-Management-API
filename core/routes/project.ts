@@ -1,6 +1,5 @@
 import express from "express"
 import projectController from "../modules/project/project.controller"
-import filterController from "../modules/filter/filter.controller"
 import { newProjectDTO, updateProjectDTO } from "../modules/project/dto";
 import { validate } from "../middlewares/validation";
 import { validateProject } from "../middlewares/projectValidation";
@@ -17,15 +16,15 @@ router.post("/new",
 )
 
 router.delete("/delete/:projectId",
-    validateProject,
     isAdmin,
+    validateProject,
     Project.deleteProject.bind(Project)
 )
 
 router.put("/update/:projectId",
+    isAdmin,
     validateProject,
     validate(updateProjectDTO),
-    isAdmin,
     Project.updateProject.bind(Project)
 )
 

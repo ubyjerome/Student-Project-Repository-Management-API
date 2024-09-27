@@ -9,8 +9,9 @@ const Admin = new AdminService()
 export const isAdmin = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const data = await bearerExtractor(req)
+        
         if (data.success == false) {
-            serverResponse.handleError(req, res, "unauthorized", "Token Expired")
+            serverResponse.handleError(req, res, "unauthorized", "Token Expired, Please Login")
             return
         }
         const adminId = data.decoded._id

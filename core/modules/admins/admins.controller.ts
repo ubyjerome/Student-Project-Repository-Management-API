@@ -28,7 +28,38 @@ class Admin {
       serverResponse.handleError(
         req,
         res,
-        "internalServerError", 
+        "internalServerError",
+        "An Error Occured!"
+      );
+    }
+  }
+
+  async login(req: Request, res: Response) {
+    try {
+      const { email, password } = req.body
+      const response = await this.service.login(email, password)
+      if (response.isSuccess == false) {
+        serverResponse.handleError(
+          req,
+          res,
+          "unauthorized",
+          response.message
+        );
+        return
+      }
+      serverResponse.handleResponse(
+        req,
+        res,
+        response.data,
+        "success",
+        response.message
+      );
+    } catch (error) {
+      console.log(error);
+      serverResponse.handleError(
+        req,
+        res,
+        "internalServerError",
         "An Error Occured!"
       );
     }

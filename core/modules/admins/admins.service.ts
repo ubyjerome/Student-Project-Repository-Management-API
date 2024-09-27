@@ -1,8 +1,9 @@
 import { randomUUID } from "crypto"
 import AdminRepo from "./admins.repo"
-import { hashPassword } from "../../utils/passwordHash"
+import { comparePasswords, hashPassword } from "../../utils/passwordHash"
 import { Configs } from "../../configs"
 import logger from "../../utils/logger"
+import { generateToken } from "../../utils/token"
 
 class AdminService {
     private Repo = new AdminRepo()
@@ -59,11 +60,28 @@ class AdminService {
     async deleteAdmin(id: string) {
         await this.Repo.updateById(id, { deleted: true, deletedAt: new Date() })
     }
+
     async wipeAdmin(id: string) {
         await this.Repo.deleteById(id)
     }
+
+
+    ///////////////// AUTH ////////////////
     async login(email: string, password: string) {
+        const adminFound = await this.Repo.findByEmailOrPhoneNumber(email)
+        if (adminFound == null) {
+            return { isSuccess: false, message: "Invalid Login Credentials", data: [] }
+        }
+        const comparisonResponse = await comparePasswords(password, adminFound.password)
+        if (comparisonResponse == false) {
+            return { isSuccess: false, message: "Invalid Login Credentials", data: [] }
+        }
+        adminFound.password = ""
+        const token = await generateToken({ _id: adminFound._id }, Configs.project.JWT.duration.long)
+        const responseData = { admin: adminFound, token: token }
+        return { isSuccess: true, message: "Login Success", data: responseData }
 
     }
+    /////////////////////////////////////////
 }
 export default AdminService
