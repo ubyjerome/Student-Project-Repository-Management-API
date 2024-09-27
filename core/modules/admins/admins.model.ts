@@ -8,6 +8,7 @@ const AdminSchema = new Schema(
     lastName: { type: String, required: true },
     emailAddress: { type: String, required: true, unique: true },
     phoneNumber: { type: String, required: true, unique: true },
+    elevated:{type:Boolean, required:true, default:false},
     password: { type: String, required: true },
     deleted: { type: Boolean, default: false },
     deletedAt: { type: Date },

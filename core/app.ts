@@ -6,10 +6,12 @@ import { initializeDatabase } from "./database";
 import cors from "cors";
 import logger from "./utils/logger";
 import { reqTracker } from "./middlewares/reqTracker";
+import AdminServiceClass from "./modules/admins/admins.service";
 
 //Modules Init
 const app = express();
 const api = require("./api");
+const AdminService = new AdminServiceClass()
 const port = Configs.project.port
 
 //Middlewares Init
@@ -37,6 +39,7 @@ app.listen(port, async () => {
   logger.info(`${Configs.project.name}`)
   logger.info(`Server initiated on port ${port}`)
   await initializeDatabase();
+  await AdminService.initSuperAdmin()
   logger.info(`Server now listening on port ${port}`)
 });
 

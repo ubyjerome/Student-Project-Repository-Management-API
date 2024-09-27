@@ -2,6 +2,7 @@ import { Document } from "mongoose";
 
 export interface IAdmin extends Document {
     _id:string,
+    elevated:Boolean,
     firstName:string,
     lastName:string,
     email:string,
