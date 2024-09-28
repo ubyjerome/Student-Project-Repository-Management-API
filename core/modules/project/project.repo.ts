@@ -11,7 +11,7 @@ class ProjectRepo {
 
     // Get all projects
     async getAllProjects(): Promise<any> {
-        const projects = await Project.find();
+        const projects = await Project.find({deleted:false});
         return projects
     }
 
